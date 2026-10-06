@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Unity - Respuestas y Justificaciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+            overflow-x: auto;
+            color: #333;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            opacity: 0.6;
+            font-size: 0.95em;
+        }
+
+        .option.red { background: #e74c3c; color: white; }
+        .option.blue { background: #3498db; color: white; }
+        .option.yellow { background: #f39c12; color: white; }
+        .option.green { background: #27ae60; color: white; }
+
+        .option.correct {
+            opacity: 1;
+            box-shadow: 0 0 0 3px #2ecc71, 0 5px 15px rgba(0,0,0,0.2);
+            transform: scale(1.02);
+        }
+
+        .option .shape {
+            font-size: 0.8em;
+        }
+
+        .answer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2ecc71;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .justification {
+            background: #f0f9ff;
+            border-left: 4px solid #3498db;
+            padding: 18px 20px;
+            border-radius: 8px;
+            color: #2c3e50;
+            line-height: 1.7;
+            font-size: 0.98em;
+        }
+
+        .justification strong {
+            color: #2980b9;
+        }
+
+        .justification code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #c0392b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.92em;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .checkmark::before {
+            content: "✅ ";
+        }
+
+        .crossmark::before {
+            content: "❌ ";
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Quiz Unity</h1>
+        <p class="subtitle">Respuestas correctas con justificación detallada</p>
+
+        <!-- Pregunta 1 -->
+        <div class="question-card">
+            <span class="question-number">1</span>
+            <p class="question-text">¿Qué espacio de nombres se necesita para usar el nuevo Input System en un script?</p>
+            <div class="options-grid">
+                <div class="option red correct"><span class="shape">▲</span> using UnityEngine.InputSystem;</div>
+                <div class="option blue"><span class="shape">◆</span> using UnityEngine.Input;</div>
+                <div class="option yellow"><span class="shape">●</span> using UnityEngine.InputActions;</div>
+                <div class="option green"><span class="shape">■</span> using UnityEditor.InputSystem;</div>
+            </div>
+            <div class="answer-badge">🔴 Rojo — Respuesta correcta</div>
+            <div class="justification">
+                Para usar el nuevo <strong>Input System</strong> de Unity en un script C#, necesitás importar el namespace <code>UnityEngine.InputSystem</code>. Este es el espacio de nombres principal que contiene toda la API del paquete Input System, que reemplaza al antiguo Input Manager (<code>UnityEngine.Input</code>).
+            </div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="question-card">
+            <span class="question-number">2</span>
+            <p class="question-text">Se creó la acción "Move" de tipo Value y Control Type Vector2. ¿Cuál línea lee correctamente su valor?</p>
+            <div class="options-grid">
+                <div class="option red correct"><span class="shape">▲</span> Vector2 mov = moveAction.action.ReadValue&lt;Vector2&gt;();</div>
+                <div class="option blue"><span class="shape">◆</span> Vector2 mov = moveAction.GetValue();</div>
+                <div class="option yellow"><span class="shape">●</span> Vector2 mov = moveAction.action.ReadValue&lt;float&gt;();</div>
+                <div class="option green"><span class="shape">■</span> Vector2 mov = Input.GetAxis("Move");</div>
+            </div>
+            <div class="answer-badge">🔴 Rojo — Respuesta correcta</div>
+            <div class="justification">
+                Si la acción es de tipo <strong>Value</strong> con <strong>Control Type Vector2</strong>, el valor se lee con el método genérico <code>ReadValue&lt;Vector2&gt;()</code>. El tipo genérico debe coincidir exactamente con el Control Type definido en la acción. La opción con <code>&lt;float&gt;</code> fallaría por incompatibilidad de tipos, e <code>Input.GetAxis()</code> pertenece al sistema antiguo.
+            </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="question-card">
+            <span class="question-number">3</span>
+            <p class="question-text">Si se suscribe un método con += en OnEnable(), conviene desuscribirlo con -= en OnDisable().</p>
+            <div class="options-grid">
+                <div class="option blue correct"><span class="shape">◆</span> Verdadero</div>
+                <div class="option red"><span class="shape">▲</span> Falso</div>
+            </div>
+            <div class="answer-badge">🔵 Azul — Verdadero</div>
+            <div class="justification">
+                Es una <strong>buena práctica fundamental</strong> en Unity. Suscribirse con <code>+=</code> en <code>OnEnable()</code> y desuscribirse con <code>-=</code> en <code>OnDisable()</code> evita fugas de memoria y errores por referencias "fantasma" (métodos que siguen escuchando eventos aunque el objeto esté inactivo o destruido). Ambos métodos son simétricos en el ciclo de vida del componente.
+            </div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="question-card">
+            <span class="question-number">4</span>
+            <p class="question-text">Un objeto 2D con Rigidbody (3D) interactúa normalmente con colliders Collider2D.</p>
+            <div class="options-grid">
+                <div class="option red correct"><span class="shape">▲</span> Falso</div>
+                <div class="option blue"><span class="shape">◆</span> Verdadero</div>
+            </div>
+            <div class="answer-badge">🔴 Rojo — Falso</div>
+            <div class="justification">
+                En Unity, los sistemas 2D y 3D están <strong>completamente separados</strong>. Un <code>Rigidbody</code> (3D) solo detecta colisiones con colisionadores 3D, y un <code>Collider2D</code> solo interactúa con otros componentes 2D. Para que interactúen correctamente, ambos objetos deben usar <code>Rigidbody2D</code> + <code>Collider2D</code>.
+            </div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="question-card">
+            <span class="question-number">5</span>
+            <p class="question-text">¿Cuál es la mejor forma de enviar la velocidad al Animator para alternar entre Idle y Caminar?</p>
+            <div class="options-grid">
+                <div class="option red"><span class="shape">▲</span> animator.SetBool("Speed", movimiento);</div>
+                <div class="option blue"><span class="shape">◆</span> animator.Play(movimiento.x);</div>
+                <div class="option yellow correct"><span class="shape">●</span> animator.SetFloat("Speed", Mathf.Abs(movimiento.x));</div>
+                <div class="option green"><span class="shape">■</span> animator.SetTrigger("Speed", movimiento.x);</div>
+            </div>
+            <div class="answer-badge">🟡 Amarillo — Respuesta correcta</div>
+            <div class="justification">
+                La forma estándar es usar un parámetro <strong>Float</strong> llamado "Speed". <code>Mathf.Abs()</code> garantiza un valor positivo sin importar la dirección (izquierda/derecha), permitiendo transiciones fluidas: <em>Idle</em> cuando Speed ≈ 0 y <em>Caminar</em> cuando Speed &gt; umbral. Además, <code>SetTrigger</code> no recibe ese tipo de argumentos.
+            </div>
+        </div>
+
+        <!-- Pregunta 6 -->
+        <div class="question-card">
+            <span class="question-number">6</span>
+            <p class="question-text">Un Rigidbody2D con Body Type Kinematic no es afectado por la gravedad y se mueve mediante script.</p>
+            <div class="options-grid">
+                <div class="option blue correct"><span class="shape">◆</span> Verdadero</div>
+                <div class="option red"><span class="shape">▲</span> Falso</div>
+            </div>
+            <div class="answer-badge">🔵 Azul — Verdadero</div>
+            <div class="justification">
+                Correcto. Un <code>Rigidbody2D</code> con <strong>Body Type = Kinematic</strong>: <span class="crossmark"></span>No le afecta la gravedad. <span class="crossmark"></span>No responde a fuerzas físicas como <code>AddForce</code>. <span class="checkmark"></span>Se mueve mediante script usando <code>MovePosition()</code>. Ideal para plataformas móviles o enemigos con rutas controladas.
+            </div>
+        </div>
+
+        <!-- Pregunta 7 -->
+        <div class="question-card">
+            <span class="question-number">7</span>
+            <p class="question-text">En el Input Actions Asset, ¿qué configuración es la adecuada para la acción "Jump"?</p>
+            <div class="options-grid">
+                <div class="option red correct"><span class="shape">▲</span> Action Type: Button</div>
+                <div class="option blue"><span class="shape">◆</span> Action Type: Value, Control Type: Vector2</div>
+                <div class="option yellow"><span class="shape">●</span> Action Type: Pass Through, Control Type: Axis</div>
+                <div class="option green"><span class="shape">■</span> Action Type: Value, Control Type: Quaternion</div>
+            </div>
+            <div class="answer-badge">🔴 Rojo — Action Type: Button</div>
+            <div class="justification">
+                "Jump" es una entrada <strong>discreta/booleana</strong> (se presiona o no), por lo que corresponde <strong>Button</strong>. Las demás opciones no aplican: <code>Value + Vector2</code> es para movimiento continuo, <code>Axis</code> para gatillos analógicos y <code>Quaternion</code> para rotaciones.
+            </div>
+        </div>
+
+        <!-- Pregunta 8 -->
+        <div class="question-card">
+            <span class="question-number">8</span>
+            <p class="question-text">Un Prefab permite modificar un objeto una vez y que el cambio se aplique a todas sus copias.</p>
+            <div class="options-grid">
+                <div class="option blue correct"><span class="shape">◆</span> Verdadero</div>
+                <div class="option red"><span class="shape">▲</span> Falso</div>
+            </div>
+            <div class="answer-badge">🔵 Azul — Verdadero</div>
+            <div class="justification">
+                Esa es la <strong>definición exacta de un Prefab</strong>. Es un template reutilizable que mantiene un vínculo con todas sus instancias: al modificar el Prefab original, el cambio se propaga automáticamente a todas las copias presentes en la escena.
+            </div>
+        </div>
+
+        <!-- Pregunta 9 -->
+        <div class="question-card">
+            <span class="question-number">9</span>
+            <p class="question-text">¿Qué componente permite que un objeto 2D sea afectado por la gravedad y las fuerzas físicas?</p

@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'presentacion/votacion_screen.dart';
+
+void main() => runApp(const VotaDoloresApp());
+
+class VotaDoloresApp extends StatelessWidget {
+  const VotaDoloresApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Vota Dolores Hidalgo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        useMaterial3: true,
+      ),
+      home: const VotacionScreen(),
+    );
+  }
+}
